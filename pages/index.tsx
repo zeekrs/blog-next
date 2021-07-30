@@ -1,12 +1,14 @@
 import { Menu, Transition } from '@headlessui/react'
 import { useState } from 'react'
 import clasnames from 'classnames'
+import CanvasNest from '@components/CanvasNest'
 export default function Home() {
 	const menus = ['首页', '理想', '随笔', '工具', '其他']
 	const a = '123'
 	const [currentMenu, setCurrentMenu] = useState(menus[0])
+	const [isFlow, setIsFlow] = useState(true)
 	return (
-		<div>
+		<div className="h-screen">
 			<div className="bg-gray-600 text-white">
 				<div className="m-auto max-w-screen-lg flex justify-between items-center px-4">
 					<div>Zeekrs' Blog</div>
@@ -18,6 +20,7 @@ export default function Home() {
 							return (
 								<Menu.Item
 									onClick={() => {
+										setIsFlow(!isFlow)
 										setCurrentMenu(item)
 									}}
 									as="button"
@@ -41,6 +44,7 @@ export default function Home() {
 					</Menu>
 				</div>
 			</div>
+			<CanvasNest follow={isFlow} />
 		</div>
 	)
 }
