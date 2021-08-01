@@ -1,6 +1,9 @@
 import '../styles/globals.css'
+// Import Swiper styles
+import 'swiper/swiper.min.css'
 import type { AppProps } from 'next/app'
 import Layout from '@components/Layout'
+
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<Layout>
