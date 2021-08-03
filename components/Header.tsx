@@ -8,7 +8,7 @@ const Header: React.FC = () => {
 	return (
 		<header className="sticky top-0 z-50 bg-opacity-50  backdrop-filter backdrop-blur shadow ">
 			<div className="m-auto max-w-screen-lg flex justify-between items-center px-4">
-				<div className="font-mono font-bold ">Zeekrs' Blog</div>
+				<div className="font-mono font-bold ">Zeekrs&apos; Blog</div>
 				<Menu
 					as="div"
 					className="flex flex-nowrap items-center justify-items-end "
