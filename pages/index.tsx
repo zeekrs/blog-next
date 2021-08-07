@@ -3,10 +3,18 @@ import Image from 'next/image'
 import IconFont from '@components/iconfont'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay } from 'swiper'
-import type { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Layout from '@components/Layout'
 
 SwiperCore.use([Autoplay])
+interface Article {
+	id: number
+	title: string
+	content: string
+	coverImage: string
+	tags: string[]
+	createAt: string
+}
 export default function Home() {
 	const banners = [
 		'https://img2.tapimg.com/bbcode/images/be2d2472489319c9600369a932b06677.png?imageView2/2/w/1320/h/9999/q/80/format/jpg/interlace/1/ignore-error/1',
@@ -15,6 +23,30 @@ export default function Home() {
 		'https://img2.tapimg.com/bbcode/images/6c69ee2c4d74d0a9f5642737a3efe4dd.png?imageView2/2/w/1320/h/9999/q/80/format/jpg/interlace/1/ignore-error/1',
 		'https://img2.tapimg.com/bbcode/images/4f2cc458ad147e3f47eaddb07dd89697.png?imageView2/2/w/1320/h/9999/q/80/format/jpg/interlace/1/ignore-error/1',
 	]
+
+	const [articles, setArticle] = useState<Article[]>([])
+
+	useEffect(() => {
+		const articles = generateArticles()
+		setArticle(articles)
+	}, [])
+	const generateArticles = () => {
+		const temp = [...articles]
+		for (let i = articles.length; i < 10; i++) {
+			temp.push({
+				id: i,
+				title: `测试标题${i}`,
+				content:
+					'啊吧啊吧啊吧办法水电费埃里克束带结发;世纪东方拉三等奖发了圣诞节氛围IE卷发梳砥砺奋进OA王嘉尔法拉盛;点击foe文件发售考虑对方均为;案件发生了地方叫我案件发生;颠覆了看见爱上;非叫我艾尔建覅偶',
+				coverImage:
+					'https://img2.tapimg.com/bbcode/images/be2d2472489319c9600369a932b06677.png?imageView2/2/w/1320/h/9999/q/80/format/jpg/interlace/1/ignore-error/1',
+				tags: [],
+				createAt: '2020-12-32',
+			})
+		}
+		return temp
+	}
+
 	return (
 		<>
 			<Swiper
@@ -77,7 +109,6 @@ export default function Home() {
 									<IconFont className="w-8 h-8 cursor-pointer" name="wechat" />
 								</a>
 							</Link>
-
 							<a
 								href={
 									'tencent://message/?uin=263721301&Site=zeekrs.com&Menu=yes'
@@ -85,12 +116,25 @@ export default function Home() {
 							>
 								<IconFont className="w-8 h-8" name="qq" />
 							</a>
-							<IconFont className="w-8 h-8" name="location" />
+							<a
+								href="https://uri.amap.com/marker?position=116.418834,39.997673"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<IconFont className="w-8 h-8" name="location" />
+							</a>
 						</div>
 					</div>
 				</div>
-				<div className="flex-grow  mt-4 ml-4 shadow rounded ">
-					<Image src="/images/wechat-qrcode.jpeg" width={360} height={480} />
+				<div className="flex-grow  mt-4 ml-4 shadow rounded px-4">
+					{articles.map((item) => {
+						return (
+							<div className="mt-4" key={item.id}>
+								<div className="font-bold text-xl">{item.title}</div>
+								<div className="text-base mt-4">{item.content}</div>
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		</>

@@ -46,8 +46,14 @@ const CanvasNest: React.FC<CanvasNestConfig> = (props) => {
 		pointsRef.current = randomPoints()
 		window.addEventListener('resize', onResize)
 		parentElement.onmousemove = (e) => {
-			const x = e.clientX - parentElement.offsetLeft + document.scrollingElement!.scrollLeft
-			const y = e.clientY - parentElement.offsetTop + document.scrollingElement!.scrollTop
+			const x =
+				e.clientX -
+				parentElement.offsetLeft +
+				document.scrollingElement!.scrollLeft
+			const y =
+				e.clientY -
+				parentElement.offsetTop +
+				document.scrollingElement!.scrollTop
 
 			mousePoint.current.x = x
 			mousePoint.current.y = y
@@ -66,10 +72,12 @@ const CanvasNest: React.FC<CanvasNestConfig> = (props) => {
 			parentElement.onmousemove = null
 			cancelAnimationFrame(animationRef.current)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const drawCanvas = () => {
-		const { pointColor, lineColor, pointOpacity, pointRadius, lineWidth } = props
+		const { pointColor, lineColor, pointOpacity, pointRadius, lineWidth } =
+			props
 		const cavas = canvasRef.current!
 		const context = cavas.getContext('2d')!
 		const width = cavas.width
@@ -87,11 +95,14 @@ const CanvasNest: React.FC<CanvasNestConfig> = (props) => {
 			point.x += point.xStep //移动点
 			point.y += point.yStep
 			// 碰到边界，反向反弹
-			point.xStep *= point.x + pointRadius! > width || point.x - pointRadius! < 0 ? -1 : 1
-			point.yStep *= point.y + pointRadius! > height || point.y - pointRadius! < 0 ? -1 : 1
+			point.xStep *=
+				point.x + pointRadius! > width || point.x - pointRadius! < 0 ? -1 : 1
+			point.yStep *=
+				point.y + pointRadius! > height || point.y - pointRadius! < 0 ? -1 : 1
 			// 从下一个点开始
 			for (let nextIndex = 0; nextIndex < points.length + 1; nextIndex++) {
-				const nextPoint = nextIndex === points.length ? mousePoint.current : points[nextIndex]
+				const nextPoint =
+					nextIndex === points.length ? mousePoint.current : points[nextIndex]
 
 				// 当前点存在
 				if (nextPoint.x && nextPoint.y) {
@@ -99,7 +110,9 @@ const CanvasNest: React.FC<CanvasNestConfig> = (props) => {
 					const yDistance = point.y - nextPoint.y // y轴距离 n
 					const distance = xDistance * xDistance + yDistance * yDistance // 总距离, m
 					if (distance < nextPoint.max)
-						nextIndex === points.length && distance >= nextPoint.max / 2 && ((point.x -= 0.03 * xDistance), (point.y -= 0.03 * yDistance))
+						nextIndex === points.length &&
+							distance >= nextPoint.max / 2 &&
+							((point.x -= 0.03 * xDistance), (point.y -= 0.03 * yDistance))
 
 					const scale = (nextPoint.max - distance) / nextPoint.max
 					context.beginPath()
@@ -131,7 +144,15 @@ const CanvasNest: React.FC<CanvasNestConfig> = (props) => {
 		return points
 	}
 
-	return <canvas ref={canvasRef} style={props.style} className={props.className} width={canvasWidth} height={canvasHeight}></canvas>
+	return (
+		<canvas
+			ref={canvasRef}
+			style={props.style}
+			className={props.className}
+			width={canvasWidth}
+			height={canvasHeight}
+		></canvas>
+	)
 }
 CanvasNest.defaultProps = {
 	style: {
