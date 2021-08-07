@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
 			<Header />
 			<main className="max-w-screen-lg mx-auto py-4">{children}</main>
 			<Footer />
-			<CanvasNest />
+			{/* <CanvasNest /> */}
 		</div>
 	)
 }

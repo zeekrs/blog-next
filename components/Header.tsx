@@ -23,7 +23,6 @@ const Header: React.FC = () => {
 									'p-4',
 									'hover:text-gray-900',
 									'transition-colors',
-									'duration-200',
 									{
 										['bg-opacity-50']: currentMenu === item,
 										['bg-gray-100']: currentMenu === item,
