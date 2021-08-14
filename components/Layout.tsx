@@ -12,7 +12,7 @@ const Layout: React.FC = ({ children }) => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<Header />
-			<main className="max-w-screen-lg mx-auto py-4">{children}</main>
+			<main className="max-w-screen-lg mx-auto p-4">{children}</main>
 			<Footer />
 			{/* <CanvasNest /> */}
 		</div>

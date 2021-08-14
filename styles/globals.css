@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.line-3 {
+.text-line-3 {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
