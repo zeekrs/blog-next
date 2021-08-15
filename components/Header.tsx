@@ -2,7 +2,7 @@ import { Menu } from '@headlessui/react'
 import { useState } from 'react'
 import classnames from 'classnames'
 const Header: React.FC = () => {
-	const menus = ['首页', '理想', '随笔', '工具', '其他']
+	const menus = ['首页', '博文', '说说', '工具', '其他']
 	const [currentMenu, setCurrentMenu] = useState(menus[0])
 	return (
 		<header className="sticky top-0 z-50 bg-opacity-50  backdrop-filter backdrop-blur shadow ">

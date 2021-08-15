@@ -25,7 +25,18 @@ export default function Home() {
 	]
 
 	const [articles, setArticle] = useState<Article[]>([])
-
+	const tags = [
+		'虚拟机',
+		'JAVA',
+		'JAVASCRIPT',
+		'KOTLIN',
+		'RUST',
+		'WEB',
+		'NEXTJS',
+		'NB',
+		'Android',
+		'Node',
+	]
 	useEffect(() => {
 		const articles = generateArticles()
 		setArticle(articles)
@@ -93,7 +104,7 @@ export default function Home() {
 					<div className="shadow rounded p-4">
 						<div className="mx-auto w-16">
 							<Image
-								className="rounded-full"
+								className="rounded-full transform duration-700  transition-transform hover:rotate-360	"
 								src="https://img2.tapimg.com/bbcode/images/be2d2472489319c9600369a932b06677.png?imageView2/2/w/1320/h/9999/q/80/format/jpg/interlace/1/ignore-error/1"
 								width={64}
 								height={64}
@@ -101,11 +112,38 @@ export default function Home() {
 							/>
 						</div>
 						<div className="text-center mt-2 font-serif font-bold">Zeekrs</div>
-						<div className="text-center mt-1 text-gray-500 font-serif">
+						<div className="text-center mt-1 text-gray-700 font-serif">
 							full stack developer
 						</div>
 						<div className="text-center mt-2 font-serif ">just do it</div>
-						<div className="flex justify-evenly mt-8">
+						<div className="flex mt-4 justify-around gap-2 ">
+							<div className=" text-center">
+								<div className="text-sm text-gray-700 font-bold">POSTS</div>
+								<div className="mt-1 text-lg font-bold text-gray-800">231</div>
+							</div>
+							<div className="my-4 border-l" />
+							<div className=" text-center">
+								<div className="text-sm text-gray-700 font-bold">
+									CATEGORIES
+								</div>
+								<div className="mt-1 text-lg font-bold text-gray-800">231</div>
+							</div>
+							<div className="my-4 border-l" />
+							<div className=" text-center">
+								<div className="text-sm text-gray-700 font-bold">TAGS</div>
+								<div className="mt-1 text-lg font-bold text-gray-800">231</div>
+							</div>
+						</div>
+						<div className="mt-4 bg-gray-700 p-2 rounded text-center font-bold text-white cursor-pointer hover:bg-gray-800">
+							<a
+								href="https://github.com/zeekrs"
+								target="_blank"
+								rel="noreferrer"
+							>
+								FLOW
+							</a>
+						</div>
+						<div className="flex justify-evenly mt-4">
 							<a
 								href="https://github.com/zeekrs"
 								target="_blank"
@@ -129,13 +167,50 @@ export default function Home() {
 							>
 								<IconFont size={2} name="qq" />
 							</a>
-							<a
-								href="https://uri.amap.com/marker?position=116.418834,39.997673"
-								target="_blank"
-								rel="noreferrer"
-							>
-								<IconFont size={2} name="location" />
-							</a>
+						</div>
+					</div>
+					<div className="shadow rounded mt-2 px-4">
+						<div className=" font-bold text-black text-lg py-4">CATEGORIES</div>
+						<div className=" border-b" />
+						{articles.map((item, index) => {
+							return (
+								<div
+									key={index}
+									className="py-2 truncate cursor-pointer text-gray-600 hover:text-black"
+								>
+									{item.title}
+								</div>
+							)
+						})}
+					</div>
+					<div className="shadow rounded mt-2 px-4">
+						<div className=" font-bold text-black text-lg py-4">HOT POSTS</div>
+						<div className=" border-b" />
+						{articles.map((item, index) => {
+							return (
+								<div
+									key={index}
+									className="py-2 truncate cursor-pointer text-gray-600 hover:text-black"
+								>
+									{item.title}
+								</div>
+							)
+						})}
+					</div>
+					<div className="shadow rounded mt-2 px-4">
+						<div className=" font-bold text-black text-lg py-4">TAGS</div>
+						<div className=" border-b" />
+						<div className="flex flex-wrap gap-2 py-4">
+							{tags.map((item) => {
+								return (
+									<div
+										key={item}
+										className="py-2 px-4 rounded  cursor-pointer bg-gray-900 text-gray-300 hover:bg-black hover:text-white"
+									>
+										{item}
+									</div>
+								)
+							})}
 						</div>
 					</div>
 				</div>
@@ -144,7 +219,7 @@ export default function Home() {
 						return (
 							<div className="group mt-4 shadow rounded cursor hover:shadow-lg transition-all overflow-hidden">
 								<Image
-									className="transition duration-500 transform hover:scale-110"
+									className="transition duration-500 transform group-hover:scale-110"
 									src={item.coverImage}
 									layout="responsive"
 									width={360}
@@ -155,7 +230,7 @@ export default function Home() {
 									<div className="font-bold w-full text-xl  flex-none truncate overflow-hidden text-gray-700 group-hover:text-gray-900">
 										{item.title}
 									</div>
-									<div className="pt-2 text-justify text-line-3 text-gray-500 group-hover:text-gray-700 transform group-hover:scale-110">
+									<div className="pt-2 text-justify text-line-3 text-gray-500 group-hover:text-gray-700 transform ">
 										{item.content}
 									</div>
 								</div>
@@ -169,78 +244,22 @@ export default function Home() {
 									})}
 								</div>
 								<div className="mx-4 mt-2 border-t" />
-								<div className="flex flex-wrap gap-4 p-4  text-blue-800">
-									<div className="flex items-center">
+								<div className="flex flex-wrap gap-8 p-4 text-sm">
+									<div className="flex items-center cursor-pointer">
 										<IconFont size={1} name="comment" />
-										<span className="ml-1">22</span>
+										<span className="ml-1"> 22 评论</span>
 									</div>
-									<div className="flex items-center">
+									<div className="flex items-center cursor-pointer">
 										<IconFont size={1} name="heart" />
-										<span>11</span>
+										<span className="ml-1"> 11 点赞</span>
 									</div>
-									<div className="flex items-center">
-										<IconFont size={1} name="eye" />
-										<span>33</span>
-									</div>
-									<div className="flex items-center">
-										12
-										<svg
-											className="fill-current text-green-600 w-4 h-4 hover:text-indigo-700"
-											viewBox="0 0 1024 1024"
-										>
-											<path d="M468.476 632.834a240.048 240.048 0 0 1-110.052-8.37c-11.358-3.672-52.866 39.78-63.18 34.524-6.12-3.132 18.54-54.522 12.834-58.158C257.066 568.25 224 515.906 224 456.884 224 358.082 316.682 278 431 278c107.802 0 196.344 71.208 206.1 162.162 90.684 3.546 162.9 66.294 162.9 143.172 0 47.754-27.846 90.036-70.686 116.1-8.064 4.896 17.46 46.26 8.424 49.95-5.58 2.268-45.432-32.76-51.336-30.996-17.946 5.364-37.26 8.28-57.402 8.28-73.674 0-136.476-39.06-160.524-93.834z m-9.468-33.84c-9.108 1.26-18.468 1.926-28.008 1.926-23.868 0-46.602-4.104-67.248-11.52-2.052-0.738-9.396-2.952-13.356 0-8.928 6.642-20.916 20.43-20.916 20.43s4.392-10.044 5.868-24.696c0.666-6.696-9.558-11.394-11.592-12.78C284.876 546.074 260 502.64 260 457.46c0-79.236 76.554-143.46 171-143.46 88.182 0 160.776 55.98 170.01 127.908C519.884 453.104 458 512.18 458 583.334c0 5.292 0.342 10.53 1.008 15.66zM512 962c248.526 0 450-201.474 450-450S760.526 62 512 62 62 263.474 62 512s201.474 450 450 450z m-153-540a27 27 0 1 0 0-54 27 27 0 0 0 0 54z m144 0a27 27 0 1 0 0-54 27 27 0 0 0 0 54z m63 126a18 18 0 1 0 0-36 18 18 0 0 0 0 36z m108 0a18 18 0 1 0 0-36 18 18 0 0 0 0 36z" />
-										</svg>
+									<div className="flex items-center cursor-pointer">
+										<IconFont size={1} name="read" />
+										<span className="ml-1"> 33 阅读</span>
 									</div>
 								</div>
 							</div>
 						)
-						// 	return (
-						// 		<div
-						// 			className="ml-4 mt-4 overflow-hidden shadow rounded  cursor-pointer relative  hover:shadow-lg text-gray-700  hover:text-black transition-all"
-						// 			key={item.id}
-						// 		>
-						// 			<div className="h-9">
-						// 				<Image
-						// 					src={item.coverImage}
-						// 					layout="fill"
-						// 					objectFit="cover"
-						// 				/>
-						// 			</div>
-						// 			<div className="flex-1 overflow-hidden text-justify p-4 pb-0 flex flex-col h-full">
-						// 				<div className="font-bold text-xl flex-none truncate overflow-hidden">
-						// 					{item.title}
-						// 				</div>
-						// 				<div className="text-base my-1 overflow-hidden line-3">
-						// 					{item.content}
-						// 				</div>
-						// 				<div className="flex-none my-1 flex text-sm items-center ">
-						// 					<div className=" bg-gray-800 text-white rounded px-2 py-1">
-						// 						JAVA
-						// 					</div>
-						// 					<div className=" ml-2 bg-gray-800 text-white rounded px-2 py-1">
-						// 						虚拟机
-						// 					</div>
-						// 					<div className="ml-2 bg-gray-800 text-white rounded px-2 py-1">
-						// 						Script
-						// 					</div>
-						// 				</div>
-						// 				<div className=" flex-none flex  text-gray-500">
-						// 					<div className="flex items-center">
-						// 						<IconFont size={1} name="comment" />
-						// 						<span className="ml-1">22</span>
-						// 					</div>
-						// 					<div className="ml-2 flex items-center">
-						// 						<IconFont size={1} name="heart" />
-						// 						<span>11</span>
-						// 					</div>
-						// 					<div className="ml-2  flex items-center">
-						// 						<IconFont size={1} name="eye" />
-						// 						<span>33</span>
-						// 					</div>
-						// 				</div>
-						// 			</div>
-						// 		</div>
-						// 	)
 					})}
 				</div>
 			</div>

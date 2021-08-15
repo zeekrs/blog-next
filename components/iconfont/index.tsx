@@ -2,25 +2,25 @@
 /* eslint-disable */
 
 import React, { SVGAttributes, FunctionComponent } from 'react'
-import IconEye from './IconEye'
+import IconLocation from './IconLocation'
+import IconRead from './IconRead'
 import IconComment from './IconComment'
 import IconHeart from './IconHeart'
 import IconHeartFull from './IconHeartFull'
 import IconWechat from './IconWechat'
 import IconQq from './IconQq'
 import IconMail from './IconMail'
-import IconLocation from './IconLocation'
 import IconGithub from './IconGithub'
 
 export type IconNames =
-	| 'eye'
+	| 'location'
+	| 'read'
 	| 'comment'
 	| 'heart'
 	| 'heart-full'
 	| 'wechat'
 	| 'qq'
 	| 'mail'
-	| 'location'
 	| 'github'
 
 interface Props extends Omit<SVGAttributes<SVGElement>, 'color'> {
@@ -31,8 +31,10 @@ interface Props extends Omit<SVGAttributes<SVGElement>, 'color'> {
 
 const IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
 	switch (name) {
-		case 'eye':
-			return <IconEye {...rest} />
+		case 'location':
+			return <IconLocation {...rest} />
+		case 'read':
+			return <IconRead {...rest} />
 		case 'comment':
 			return <IconComment {...rest} />
 		case 'heart':
@@ -45,8 +47,6 @@ const IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
 			return <IconQq {...rest} />
 		case 'mail':
 			return <IconMail {...rest} />
-		case 'location':
-			return <IconLocation {...rest} />
 		case 'github':
 			return <IconGithub {...rest} />
 	}
